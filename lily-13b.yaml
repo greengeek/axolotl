@@ -19,12 +19,13 @@ output_dir: ./qlora-out
 adapter: qlora
 lora_model_dir:
 
-sequence_len: 512
+sequence_len: 1024
 sample_packing: true
+pad_to_sequence_len: true
 
 lora_r: 64
 lora_alpha: 16
-lora_dropout: 0.1
+lora_dropout: 0.05
 lora_target_modules:
 lora_target_linear: true
 lora_fan_in_fan_out:
@@ -35,12 +36,12 @@ wandb_watch:
 wandb_run_id:
 wandb_log_model:
 
-gradient_accumulation_steps: 2
+gradient_accumulation_steps: 4
 micro_batch_size: 2
 num_epochs: 5
 optimizer: paged_adamw_32bit
 lr_scheduler: cosine
-learning_rate: 0.00002
+learning_rate: 0.0002
 
 train_on_inputs: false
 group_by_length: false
@@ -57,12 +58,13 @@ xformers_attention:
 flash_attention: true
 
 warmup_steps: 100
-eval_steps: 0.01
+eval_steps: 20
+eval_table_size: 5
 save_strategy: epoch
 save_steps:
 debug:
 deepspeed:
-weight_decay: 0.01
+weight_decay: 0.00
 fsdp:
 fsdp_config:
 special_tokens:
