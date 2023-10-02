@@ -56,13 +56,13 @@ logging_steps: 1
 xformers_attention:
 flash_attention: true
 
-warmup_steps: 100
+warmup_steps: 500
 eval_steps: 0.01
 save_strategy: epoch
 save_steps:
 debug:
 deepspeed:
-weight_decay: 0.0
+weight_decay: 0.01
 fsdp:
 fsdp_config:
 special_tokens:
